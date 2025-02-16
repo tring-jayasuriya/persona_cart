@@ -4,6 +4,7 @@ import { Login } from "../components/Login"
 import { Register } from "../components/Register"
 import { UserCard } from "../components/UserCard"
 import { Personas } from "../components/Personas"
+import { ProtectedRoutes } from "../components/ProtectedRoutes"
 
 
 const Router=()=>{
@@ -14,8 +15,11 @@ const Router=()=>{
                 <Route index element={<UserCard/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}/>
-                <Route path="personas" element={<Personas/>}/>
-                <Route path="uuid/:id" element={<Personas/>}/>
+                <Route path="uuid/:id" element={
+                    <ProtectedRoutes>
+                        <Personas/>
+                    </ProtectedRoutes>
+                }/>
             </Route>
         </Routes>
         

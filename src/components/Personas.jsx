@@ -14,7 +14,7 @@ export const Personas = () => {
     const params=useParams();
     const navigate=useNavigate()
     
-
+    
     const handleInfo=(e)=>{
         setPersonaInfo((prev)=>({
             ...prev,

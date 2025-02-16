@@ -29,7 +29,7 @@ export const Header = () => {
         </div >
         <div  style={{padding:"0px 80px"}}>
           {
-            user.isAuthenticated ?
+            user!==null && user?.isAuthenticated===true ?
 
              <button onClick={handleLogout} className='header-btn'>Logout</button> :
 

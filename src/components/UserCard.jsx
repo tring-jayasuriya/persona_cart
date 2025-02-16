@@ -11,10 +11,6 @@ export const UserCard = () => {
 
 
     const addPersonaDetails=(cardDetails=null)=>{
-        console.log(typeof(user));
-        
-
-        if(user==null ||  !user?.isAuthenticated) navigate("/login")
 
         if(cardDetails!==null){
             navigate(`/uuid/${cardDetails.uuid}`)

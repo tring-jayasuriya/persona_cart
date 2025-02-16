@@ -9,7 +9,7 @@ export const userContext=createContext()
 function App() {
 
   const [cardInfo,setCardInfo]=useState([])
-  const [user,setUser]=useState({})
+  const [user,setUser]=useState(null)
 
   return (
     
