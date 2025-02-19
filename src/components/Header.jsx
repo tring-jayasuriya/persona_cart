@@ -37,7 +37,7 @@ export const Header = () => {
               <button className='header-btn'> <Link to={'/login'} > Login </Link> </button>
               <button className='header-btn'> <Link to={'/register'} > Register </Link> </button>
             </div>
-          }
+          } 
             
         </div>
     </div>

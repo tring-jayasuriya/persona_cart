@@ -9,13 +9,7 @@ export const ProtectedRoutes = ({children}) => {
     useEffect(()=>{
         if(user==null || user?.isAuthenticated===false) navigate('/login') 
     })
-
     
-    console.log(">>>>>> log",user);
-
-    return  children
-
-    
-
+    return  children 
   
 }

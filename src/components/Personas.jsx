@@ -9,7 +9,7 @@ export const Personas = () => {
 
     const [image,setImage]=useState(null)
     const [personaInfo,setPersonaInfo]=useState(null)
-    const {cardInfo,setCardInfo}=useContext(userContext)
+    const {cardInfo,setCardInfo,user}=useContext(userContext)
     const [cardIndex,setCardIndex]=useState(-1)
     const params=useParams();
     const navigate=useNavigate()
@@ -22,6 +22,7 @@ export const Personas = () => {
             uuid:params.id
         }))
     }
+
 
     useEffect(()=>{
 
@@ -53,14 +54,18 @@ export const Personas = () => {
         }
 
             navigate("/")
-
-        
     }
     
 
     const handleImage=(e)=>{
         const file=e.target.files[0]
         if(file){
+
+            if(file.size > 5*1024*1024){
+                toast.error("file size should be less than 5 mb")
+                return
+            }
+
             const imageUrl=URL.createObjectURL(file)
             setImage(imageUrl)
             setPersonaInfo((prev)=>({
@@ -94,15 +99,15 @@ export const Personas = () => {
 
             <div className='person-image-section'>
 
-                <p className='persona-name'>Persona Name</p>
+                <p className='persona-name'>{user?.name || "Persona Name"}</p>
 
                 <div>
                     <label className='edit-image-label' htmlFor='edit-image' >Edit Image</label>
                     <input  onChange={handleImage}  id='edit-image' accept='image/*' className='file-logo' type='file'/>
                 </div>
                 
-                
             </div>
+
             <div className='personas-grid-wrapper'>
                 <div className='personas-grid-container'>
                     <div>

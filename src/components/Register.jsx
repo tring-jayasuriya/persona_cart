@@ -1,14 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "../App.css";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../App";
 import { toast } from "react-toastify";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { SlEye } from "react-icons/sl"
+import { RxCrossCircled } from "react-icons/rx";
 
 export const Register = () => {
 
   const {user,setUser}=useContext(userContext)
   const navigate=useNavigate()
+  const [showPassword,setShowPassword]=useState(false)
+  const [showConfirmPassword, setShowConfirmPassword]=useState(false)
+
+  const handleClose=()=>{
+    navigate("/")
+  }
+
 
   const {
     register,
@@ -20,7 +30,6 @@ export const Register = () => {
 
 
   const onSubmit = (data)=>{
-      console.log(data);
       
         setUser({
           ...data,
@@ -33,11 +42,22 @@ export const Register = () => {
   }
 
   console.log(user);
+
+  const  handleShowPassword=()=>{
+    setShowPassword((prev)=>!prev)
+  }
+
+  const  handleShowConfirmPassword=()=>{
+    setShowConfirmPassword((prev)=>!prev)
+  }
   
 
   return (
     <div className="login-container">
       <div className="form-wrapper">
+
+        <RxCrossCircled className='cancel-icon' onClick={handleClose}/>
+
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <h1 style={{ textAlign: "center" }}>Register</h1>
 
@@ -57,7 +77,7 @@ export const Register = () => {
             {...register("email", {
               required: "Email is empty",
               pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/,
                 message: "Invalid email",
               },
             })}
@@ -65,31 +85,49 @@ export const Register = () => {
 
           {errors.email && <p className="error-msg">{errors.email.message}</p>}
 
-          <input
-            type="text"
-            placeholder="Enter password"
-            className="login-input"
-            {...register("password",
-                {
-                    required: "Password is empty",
-                    pattern:{
-                        // value:/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$/,
-                        // message:"password should contains uppercase,lowercase and symbol with minimum 8 characters"
-                    },
-                })}
-          />
+          <div className="password-section" >
+
+            <input
+                  type={showPassword? "text" : "password"}
+                    placeholder="Enter password"
+                    className="login-input"
+                    {...register("password",
+                        {
+                            required: "Password is empty",
+                            pattern:{
+                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                                message:"password should contains uppercase,digit and symbol with minimum 8 characters"
+                            },
+                        })}
+                  />
+
+                  <span className="eye-span">
+                    {showPassword? <FaRegEyeSlash onClick={handleShowPassword}  className="eye-icon" /> : <SlEye onClick={handleShowPassword}  className="eye-icon"/>  }
+                  </span>        
+
+          </div>  
 
             {errors.password && <p className="error-msg">{errors.password.message}</p>}
 
-          <input
-            type="text"
-            placeholder="Enter confirm password"
-            className="login-input"
-            {...register("confirmPassword", {
-              required: "confirm  passsword is empty",
-              validate: (data)=> data === watch("password")  || "confirm password does not match with password"
-            })}
-          />
+          <div className="password-section">
+            
+            <input
+              type={showConfirmPassword? "text" : "password"} 
+              placeholder="Enter confirm password"
+              className="login-input"
+              {...register("confirmPassword", {
+                required: "confirm  passsword is empty",
+                validate: (data)=> data === watch("password")  || "confirm password does not match with password"
+              })}
+            />
+
+              <span className="eye-span">
+                  {showConfirmPassword? <FaRegEyeSlash onClick={handleShowConfirmPassword}  className="eye-icon" /> : <SlEye onClick={handleShowConfirmPassword}  className="eye-icon"/>  }
+              </span> 
+
+          </div>
+
+         
 
             {errors.confirmPassword && <p className="error-msg">{errors.confirmPassword.message}</p>}
 

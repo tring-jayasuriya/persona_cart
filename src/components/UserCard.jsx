@@ -13,10 +13,10 @@ export const UserCard = () => {
     const addPersonaDetails=(cardDetails=null)=>{
 
         if(cardDetails!==null){
-            navigate(`/uuid/${cardDetails.uuid}`)
+            navigate(`/persona/${cardDetails.uuid}`)
         }else{
             const uuid=uuidv4();
-            navigate(`/uuid/${uuid}`)
+            navigate(`/persona/${uuid}`)
         }
     }
     
@@ -29,7 +29,7 @@ export const UserCard = () => {
                 <p>{user?.name || ""}</p>
                 <p className='persona-btn'>Persona</p>
             </div>
-            <button onClick={()=>addPersonaDetails()} className='add-persona-btn'>
+            <button onClick={addPersonaDetails} className='add-persona-btn'>
                 +Add Persona
             </button>
         </div>
@@ -43,9 +43,9 @@ export const UserCard = () => {
                     cardInfo.map((details)=>(
                         <div onClick={()=>addPersonaDetails(details)} className='card' key={details.uuid}>
                             <img className='card-image' src={details.imageUrl || 'https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'}/>
-                            <p className='card-title'>{details.quote} </p>
+                            <p   className='card-title'>{details.quote} </p>
                             <p className='card-quote'> I always want to learn more</p>
-                            <p className='card-timestamp'>Last updated : 4 min ago</p>
+                            <p className='card-timestamp'>Last updated :1 min ago</p>
                         </div>
                     ))
                 }

@@ -67,17 +67,19 @@ a{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: fit-content;
   margin-bottom: 150px;
+  position: relative;
 }
 
 .login-input{
   padding: 13px;
   border-radius: 5px;
   border: 1px solid lightgray;
-}
+} 
 
 .login-btn{
   background-color: #3c84a7;
   color: white;
+  cursor: pointer;
 }
 
 .add-persona-section{
@@ -140,6 +142,10 @@ a{
   font-weight: 700;
   margin-bottom: 12px;
   padding-left: 20px;
+  width: 250px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
 }
 
 .card-quote{
@@ -306,3 +312,37 @@ a{
   margin: 0;
 }
  
+.eye-icon{
+  font-size: 20px;
+}
+
+.password-section{
+  position: relative;
+  border-radius: 5px;
+  border:  1px solid lightgray;
+}
+
+.password-section > input{
+  border: none;
+  outline: none;
+  width:80%
+}
+
+.eye-span{
+  position:absolute;
+  top: 15px;
+  right:20px;
+  cursor: pointer;
+}
+
+.cancel-icon{
+  font-size: 20px;
+  position: absolute;
+  top:13px;
+  color: rgb(147, 144, 144);
+  right: 20px;
+  cursor: pointer;
+}
+
+
+

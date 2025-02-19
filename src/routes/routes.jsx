@@ -15,14 +15,13 @@ const Router=()=>{
                 <Route index element={<UserCard/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}/>
-                <Route path="uuid/:id" element={
+                <Route path="persona/:id" element={
                     <ProtectedRoutes>
                         <Personas/>
                     </ProtectedRoutes>
                 }/>
             </Route>
         </Routes>
-        
     )
 } 
 
